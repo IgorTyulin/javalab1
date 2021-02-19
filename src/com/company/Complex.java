@@ -59,8 +59,10 @@ public class Complex {
     }
     //вывод алг формы
     public String PrintA() {
-        if(y>=0)
+        if(y>0)
             return x + "+" + y + "i";
+        else if(y == 0)
+            return x + "";
         else
             return x + "" + y + "i";
     }

@@ -12,7 +12,7 @@ public class Matrix {
     public void print() {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                System.out.print(matrix[i][j]);
+                System.out.print(matrix[i][j].PrintA());
                 System.out.print(" ");
             }
             System.out.println("");
@@ -55,11 +55,11 @@ public class Matrix {
         Complex[][] data = new Complex[size][size];
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                Complex elem_ij = new Complex();
+                Complex val = new Complex();
                 for (int k = 0; k < size; k++){
-                    elem_ij.plus(elem_ij, matrix[i][k].mult(a.matrix[i][k], b.matrix[k][j]));
+                    val = val.plus(val, matrix[i][k].mult(a.matrix[i][k], b.matrix[k][j]));
                 }
-                data[i][j] = elem_ij;
+                data[i][j] = val;
             }
         }
         Matrix matnew = new Matrix(size);
@@ -67,11 +67,15 @@ public class Matrix {
         return matnew;
     }
 
-    public Matrix determ(){
+    public Matrix div(Matrix a, Matrix b){
         Complex[][] data = new Complex[size][size];
         for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++){
-                data[i][j] = matrix[j][i];
+            for (int j = 0; j < size; j++) {
+                Complex val = new Complex();
+                for (int k = 0; k < size; k++){
+                    val = val.plus(val, matrix[i][k].div(a.matrix[i][k], b.matrix[k][j]));
+                }
+                data[i][j] = val;
             }
         }
         Matrix matnew = new Matrix(size);
